@@ -22,3 +22,11 @@ pokemonList = [
         type: ['bug']
     }
 ];
+
+for (let i = 0; i < pokemonList.length; i++) {
+    if (pokemonList[i].height >= 7) {
+        document.write(`<p>${i + 1}. ${pokemonList[i].name} (height: 0.${pokemonList[i].height}m) - Wow, that' big!</p>`)
+    } else {
+        document.write(`<p>${i + 1}. ${pokemonList[i].name} (height: 0.${pokemonList[i].height}m)`)
+    }
+}

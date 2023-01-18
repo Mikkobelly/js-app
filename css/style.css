@@ -1,0 +1,35 @@
+:root {
+    --font-regular: 400;
+    --font-thin: 200;
+    --font-bold: 600;
+
+    --color-green:rgb(56, 121, 19);
+    --color-green-dark: rgb(1, 58, 18);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: var(--font-regular);
+    font-size: 1.6rem;
+    color: var(--color-green);
+
+    text-align: center;
+}
+
+.app__title {
+    color: var(--color-green-dark);
+}
