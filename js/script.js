@@ -44,7 +44,6 @@ let pokemonRepository = (function () {
     //Find a specific item with pokemon's name from pokemonList - from EX 1.5 Bonus Task
     function findPokemon(pokemonName) {
         pokemonList.filter(function (pokemon) {
-            console.log(pokemonName);
             return pokemon.name === pokemonName;
         })
     }
