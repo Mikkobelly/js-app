@@ -83,16 +83,3 @@ let allPokemons = pokemonRepository.getAll();
 allPokemons.forEach(function (item) {
     pokemonRepository.addListItem(item);
 })
-
-
-
-/*
-//Code used up tp EX 1.5
-allPokemons.forEach(function (item, index) {
-    if (item.height >= 7) {
-        document.write(`<p>${index + 1}. ${item.name} (height: 0.${item.height}m) - Wow, that' big!</p>`)
-    } else {
-        document.write(`<p>${index + 1}. ${item.name} (height: 0.${item.height}m)</p>`)
-    }
-})
-*/

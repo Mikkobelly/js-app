@@ -56,14 +56,32 @@ a {
 
 .container {
     flex-grow: 1;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header {
-    margin: 4rem auto;
+    width: 100%;
+    display: flex;
+    margin: 3rem 0;
+    position: relative;
+}
+
+.header__logo {
+    width: 15rem;
+    height: auto;
 }
 
 .app__title {
+    font-size: 4rem;
     color: var(--color-green-dark);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
 }
 
 .btn__pokemon-name {
@@ -110,8 +128,34 @@ a {
     opacity: .6;
 }
 
+@media all and (max-width: 45.62em) {
+    .header__logo {
+        width: 10rem;
+        height: auto;
+    }
+
+    .app__title {
+        font-size: 3.5rem; 
+    }
+}
+
 
 @media all and (max-width: 31.25em) {
+
+    body {
+        padding: 0 1.5rem;
+    }
+
+    .header__logo {
+        width: 8rem;
+        height: auto;
+    }
+
+    .app__title {
+        font-size: 3rem;
+        transform: translate(-30%, -50%);
+    }
+
     .btn__pokemon-name {
         margin-bottom: 2rem;
     }
