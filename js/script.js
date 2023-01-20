@@ -22,6 +22,7 @@ let pokemonRepository = (function () {
         }
     ];
 
+
     function getAll() {
         return pokemonList;
     }
@@ -30,6 +31,7 @@ let pokemonRepository = (function () {
         pokemonList.push(item);
     }
 
+    //only add a pokemon with right data type
     function addV(item) {
         if (typeof item === 'object' && Object.keys(item) === ['name', 'height', 'type']) {
             pokemonList.push(item);
@@ -38,6 +40,7 @@ let pokemonRepository = (function () {
         }
     }
 
+    //find specific pokemon
     function findPokemon(pokemonName) {
         pokemonList.filter(function (pokemon) {
             return pokemon.name === pokemonName;
@@ -50,6 +53,8 @@ let pokemonRepository = (function () {
 
 let allPokemons = pokemonRepository.getAll();
 
+
+//Display all pokemons in index.html
 allPokemons.forEach(function (item, index) {
     if (item.height >= 7) {
         document.write(`<p>${index + 1}. ${item.name} (height: 0.${item.height}m) - Wow, that' big!</p>`)
