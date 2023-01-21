@@ -7549,16 +7549,17 @@ z" />
             </svg>
             <h1 class="app__title">Pokemon List</h1>
         </header>
-        <ul class="pokemon-list"></ul>
+        <p class="loading-message hide-element">Loading... Please wait a moment</p>
+        <ul class="pokemon-list">
+        </ul>
     </div>
 
     <footer class="footer">
         <div class="footer__media-box">
             <a href="https://github.com/Mikkobelly" target="_blank">
                 <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-                <svg id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"
-                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    class="footer__media">
+                <svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="footer__media">
                     <g>
                         <path class="st0" d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1
                                c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   
@@ -7607,6 +7608,8 @@ z" />
         <p class="footer__text">&copy; Miki Akuta 2023</p>
     </footer>
 
+    <script src="js/promise-polyfill.js"></script>
+    <script src="js/fetch-polyfill.js"></script>
     <script src="js/script.js"></script>
 </body>
 

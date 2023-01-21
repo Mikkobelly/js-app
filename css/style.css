@@ -43,7 +43,7 @@ body {
     font-weight: var(--font-regular);
     font-size: 1.6rem;
     background-color: var(--color-ivory);
-    color: var(--color-white);
+    color: var(--color-green);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,12 +84,16 @@ a {
     transform: translate(-50%, -50%); 
 }
 
+.pokemon-list {
+    list-style: none;
+}
+
 .btn__pokemon-name {
     background-image: linear-gradient(to right bottom, 
         var(--color-primary-light), 
         var(--color-primary), 
         var(--color-primary-dark)) ;
-    color: inherit;
+    color: var(--color-white);
     border: none;
     box-shadow: var(--box-shadow);
     padding: 1.75rem 3rem;
@@ -126,6 +130,11 @@ a {
 
 .footer__text {
     opacity: .6;
+}
+
+
+.hide-element {
+    display: none;
 }
 
 @media all and (max-width: 45.62em) {

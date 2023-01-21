@@ -34,22 +34,20 @@ let pokemonRepository = (function () {
         pokemonList.appendChild(listItem);
 
         //Add a event listener to created button
-        button.addEventListener('click', function (event) {
-            showDetails(pokemon)
-        });
+        button.addEventListener('click', showDetails);
     }
 
     //Show details of a pokemon
-    function showDetails(pokemon) {
-        loadDetails(pokemon).then(function () {
-            console.log(pokemon)
-        })
+    function showDetails(pokemonLabel) {
+        for (let i = 0; i < pokemonList.length; i++) {
+            if (pokemonList[i].name === pokemonLabel.target.innerText) {
+                console.log(pokemonList[i]);
+            }
+        }
     }
 
     //Load all pokemons from main API
     function loadList() {
-        showLoadingMessage();
-
         return fetch(apiUrl)
             .then(function (response) {
                 return response.json();
@@ -64,19 +62,13 @@ let pokemonRepository = (function () {
                     add(pokemon);
                 })
             })
-            .then(function () {
-                hideLoadingMessage();
-            })
             .catch(function (e) {
-                console.error(e);
-                hideLoadingMessage();
+                console.error(e)
             })
     }
 
-    //Load details of each pokemon
+    //Load details of each pokemon 
     function loadDetails(item) {
-        showLoadingMessage();
-
         let url = item.detailsUrl;
         return fetch(url)
             .then(function (response) {
@@ -87,28 +79,12 @@ let pokemonRepository = (function () {
                 item.height = details.height;
                 item.types = details.types;
             })
-            .then(function () {
-                hideLoadingMessage();
-            })
             .catch(function (e) {
                 console.error(e);
-                hideLoadingMessage();
             })
     }
 
-    //Show message while loading
-    function showLoadingMessage() {
-        let message = document.querySelector('.loading-message');
-        message.classList.remove('hide-element');
-    }
-
-    //Hide loading message
-    function hideLoadingMessage() {
-        let message = document.querySelector('.loading-message');
-        message.classList.add('hide-element');
-    }
-
-    return { getAll, add, addListItem, loadList, loadDetails, showLoadingMessage, hideLoadingMessage };
+    return { getAll, add, addListItem, loadList, loadDetails };
 })();
 
 
@@ -118,7 +94,11 @@ pokemonRepository.loadList()
             pokemonRepository.addListItem(item);
         })
     })
+    .then(function () {
+        pokemonRepository.getAll().forEach(function (item) {
+            pokemonRepository.loadDetails(item);
+        })
+    })
     .catch(function (e) {
         console.error(e);
-    })
-
+    });
