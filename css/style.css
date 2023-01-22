@@ -4,17 +4,23 @@
     --color-primary-dark: #28b485;
 
     --color-green:rgb(56, 121, 19);
+    --color-green-light: rgb(176, 226, 167);
+    --color-green-light-2: rgb(138, 211, 125);
+    --color-green-light-3: rgb(101, 220, 81);
     --color-green-dark: rgb(1, 58, 18);
 
     --color-yellow: rgb(241, 255, 85);
 
-    --color-ivory: #FFFFE8;
+    --color-ivory: rgb(255, 255, 232);
+    --color-ivory-transparent: rgba(255, 255, 232, 0.75);
 
     --color-white: #fff;
 
     --font-regular: 400;
     --font-thin: 200;
     --font-bold: 600;
+
+    --text-shadow: 0 1px 4px var(--color-green-dark);;
 
     --box-shadow: 0 3px 8px rgba(0, 0, 0, .4);
     --box-shadow-small: 0 5px 10px rgba(0, 0, 0, .3);
@@ -38,7 +44,6 @@ html {
 
 body {
     width: 100%;
-    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
     font-weight: var(--font-regular);
     font-size: 1.6rem;
@@ -102,13 +107,16 @@ a {
 .btn__pokemon-name {
     background-image: linear-gradient(to right bottom, 
         var(--color-primary-light), 
+        var(--color-primary-light), 
         var(--color-primary), 
         var(--color-primary-dark)) ;
     color: var(--color-white);
+    text-shadow: var(--text-shadow);
     font-size: 1.8rem;
     text-transform: capitalize;
     letter-spacing: inherit;
     border: none;
+    outline: none;
     box-shadow: var(--box-shadow);
     padding: 1.5rem 3rem;
     transition: var(--transition);
@@ -146,18 +154,110 @@ a {
 }
 
 
+/* Toggled by JS */
 .hide-element {
     display: none;
 }
 
+#modal-container {
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+#modal-container.is-visible {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--color-ivory-transparent);
+    display: grid;
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+   display: none;
+}
+
+.modal.is-visible {
+    width: 50rem;
+    min-width: min-content;
+    margin: auto;
+    background-image: linear-gradient(to bottom, 
+    var(--color-green-light), 
+    var(--color-green-light-2), 
+    var(--color-primary-dark));
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem;
+    box-shadow: var(--box-shadow-big);
+}
+
+.modal-close-box {
+    display: inline-block;
+    margin-left: auto;
+}
+
+.modal-close:hover {
+    cursor: pointer;
+}
+
+.pokemon__name {
+    text-transform: capitalize;
+    font-size: 3rem;
+    color: var(--color-green-dark);
+}
+
+.pokemon__image-box {
+    height: 10rem;
+    transform: scale(1.25);
+}
+
+.pokemon__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pokemon__details {
+    color: var(--color-white);
+    font-size: 1.8rem;
+    text-shadow: var(--text-shadow);
+    width: fit-content;
+}
+
+.pokemon__details>* {
+    width: fit-content;
+}
+
+.pokemon__types,
+.pokemon__abilities {
+    list-style: none;
+}
+
+.pokemon__types>*,
+.pokemon__abilities>* {
+    display: inline-block;
+    margin-right: 1.2rem;
+}
+
 @media all and (max-width: 45.62em) {
 
-    body {
-        letter-spacing: inherit;
+    .pokemon-list {
+        display: block;
     }
 
-    .pokemon-list {
-        width: 75%;
+    .pokemon-list li {
+        width: 100%;
+    }
+
+    .btn__pokemon-name {
+        width: 100%;
     }
 
     .header__logo {
@@ -167,6 +267,17 @@ a {
 
     .app__title {
         font-size: 3.5rem; 
+    }
+}
+
+@media all and (max-width: 34.37em) {
+
+    .modal.is-visible {
+        width:95%;
+    }
+  
+    .pokemon__name {
+        font-size: 2.7rem;
     }
 }
 
@@ -189,16 +300,16 @@ a {
     }
 
     .pokemon-list {
-        display: block;
+        width: 75%;
+        min-width: max-content;
     }
 
     .pokemon-list li {
-        text-align: center;
-        margin-right: none;
         margin-bottom: 2rem;
     }
 
     .btn__pokemon-name {
+        width: 100%;
         padding: 1rem 4rem;
     }
 
