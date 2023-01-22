@@ -2,7 +2,7 @@
 
 ## Overview
 
-[Pokemon List App](#)
+[Pokemon List App](https://mikkobelly.github.io/js-app/#)
 
 This application calls [pokeAPI](https://pokeapi.co) to display pokemon names in a list and upon selection will display the pokemon's details in a modal. 
 
