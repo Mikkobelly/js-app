@@ -39,6 +39,7 @@ let pokemonRepository = (function () {
     };
 
 
+
     //Load all pokemons from main API
     function loadList() {
         showLoadingMessage();
@@ -90,7 +91,9 @@ let pokemonRepository = (function () {
             });
     };
 
-    //Show modal (details of a pokemon)
+
+
+    //Show details of a pokemon
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
             showModal(pokemon);
@@ -110,10 +113,12 @@ let pokemonRepository = (function () {
     };
 
 
+
     //Modal functionaily
     let modalContainer = document.querySelector('#modal-container');
     let modal = document.createElement('div');
 
+    //Show modal
     function showModal(pokemon) {
         modalContainer.innerHTML = '';
         modal.innerHTML = '';
@@ -176,17 +181,21 @@ let pokemonRepository = (function () {
         modal.classList.add('is-visible');
     };
 
+
+    //Hide modal
     function hideModal() {
         modalContainer.classList.remove('is-visible');
         modal.classList.remove('is-visible');
     };
 
+    //Close modal when Esc key is pressed
     window.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             hideModal();
         }
     });
 
+    //Close modal when modalContainer (outside modal) is clicked
     window.addEventListener('click', function (e) {
         if (e.target === modalContainer) {
             hideModal();
@@ -194,7 +203,7 @@ let pokemonRepository = (function () {
     });
 
 
-    return { getAll, add, addListItem, loadList, loadDetails, showLoadingMessage, hideLoadingMessage };
+    return { getAll, add, addListItem, loadList, loadDetails };
 })();
 
 
