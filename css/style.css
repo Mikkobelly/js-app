@@ -46,6 +46,7 @@ html {
 
 body {
     width: 100%;
+    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
     font-weight: var(--font-regular);
     font-size: 1.6rem;
@@ -92,6 +93,11 @@ a {
     font-weight: var(--font-bold);
     color: var(--color-green-dark);
     margin-bottom: 3rem;
+}
+
+.intro-text {
+    margin-bottom: 3rem;
+    padding: 0 1rem;
 }
 
 .pokemon-list {    

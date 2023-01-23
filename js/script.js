@@ -161,6 +161,22 @@ let pokemonRepository = (function () {
     };
 
 
+    //Serach and display matching pokemon
+    function showMatchedPokemon() {
+        let inputValue = $('input').val().toLowerCase();
+        $('.pokemon-list').empty();
+        pokemonList.forEach((item, i) => {
+            loadDetails(item);
+            if (pokemonList[i].name.includes(inputValue)) {
+                addListItem(pokemonList[i]);
+            }
+        })
+    };
+
+    $('.search__button').on('click', (e) => {
+        e.preventDefault();
+        showMatchedPokemon();
+    });
 
     return { getAll, add, addListItem, loadList, loadDetails };
 })();
