@@ -19,23 +19,22 @@ let pokemonRepository = (function () {
 
     //Create elements and add to HTML
     function addListItem(pokemon) {
-        let pokemonList = document.querySelector('.pokemon-list');
+        let pokemonList = $('.pokemon-list');
 
         //Create elements
-        let listItem = document.createElement('li');
-        let button = document.createElement('button');
-
-        button.innerText = pokemon.name;
-        button.classList.add('btn__pokemon-name');
+        let listItem = $('<li></li>');
+        listItem.append($(document.createTextNode(pokemon.name)));
+        listItem.addClass('btn__pokemon-name list-group-item list-group-item-action');
+        listItem.attr('data-toggle', 'modal');
+        listItem.attr('data-target', '#modal');
 
         //Append
-        listItem.appendChild(button);
-        pokemonList.appendChild(listItem);
+        pokemonList.append(listItem);
 
         //Add a event listener to created button
-        button.addEventListener('click', function (event) {
+        listItem.on('click', (e) => {
             showDetails(pokemon);
-        });
+        })
     };
 
 
@@ -102,105 +101,62 @@ let pokemonRepository = (function () {
 
     //Show message while loading
     function showLoadingMessage() {
-        let message = document.querySelector('.loading-message');
-        message.classList.remove('hide-element');
+        let message = $('.loading-message');
+        message.removeClass('hide-element');
     };
 
     //Hide loading message
     function hideLoadingMessage() {
-        let message = document.querySelector('.loading-message');
-        message.classList.add('hide-element');
+        let message = $('.loading-message');
+        message.addClass('hide-element');
     };
 
 
 
-    //Modal functionaily
-    let modalContainer = document.querySelector('#modal-container');
-    let modal = document.createElement('div');
-
     //Show modal
     function showModal(pokemon) {
-        modalContainer.innerHTML = '';
-        modal.innerHTML = '';
         let { name, imageUrl, height, types, abilities } = pokemon;
 
-        //Create elements in modal
-        modal.classList.add('modal');
+        let pokemonName = $('.modal-title');
+        pokemonName.empty();
+        pokemonName.addClass('pokemon__name');
 
-        let closeButtonBox = document.createElement('div');
-        closeButtonBox.classList.add('modal-close-box');
+        let pokemonDetails = $('.modal-body');
+        pokemonDetails.empty();
+        pokemonDetails.addClass('pokemon__details');
 
-        let closeButton = document.createElement('img');
-        closeButton.classList.add('modal-close');
-        closeButton.src = 'img/icon-close-menu.svg';
-        closeButton.addEventListener('click', hideModal);
+        pokemonName.append(document.createTextNode(`${name}`));
 
-        let pokemonName = document.createElement('h2');
-        pokemonName.classList.add('pokemon__name');
-        pokemonName.innerText = name;
+        let pokemonImg = $(`<img src="${imageUrl}" alt="${name} image">`);
+        pokemonImg.addClass('pokemon__img');
 
-        let pokemonImg = document.createElement('img');
-        pokemonImg.classList.add('pokemon__img');
-        pokemonImg.src = imageUrl;
-        pokemonImg.alt = `${name} image`;
+        let pokemonImgBox = $('<div></div>');
+        pokemonImgBox.addClass('pokemon__img-box');
 
-        let pokemonDetails = document.createElement('div');
-        pokemonDetails.classList.add('pokemon__details');
+        let pokemonHeight = $(`<p>height: 0.${height}m</p>`);
+        pokemonHeight.addClass('pokemon__height');
 
-        let pokemonHeight = document.createElement('p');
-        pokemonHeight.classList.add('pokemon__height');
-        pokemonHeight.innerText = `height: 0.${height}m`;
-
-        let pokemonTypeList = document.createElement('ul');
-        pokemonTypeList.classList.add('pokemon__types');
-        pokemonTypeList.innerText = 'types: ';
+        let pokemonTypeList = $('<ul>types: </ul>');
+        pokemonTypeList.addClass('pokemon__types');
 
         for (type of types) {
-            let pokemonTypeItem = document.createElement('li');
-            pokemonTypeItem.innerText = `"${type.type.name}"`;
+            let pokemonTypeItem = $(`<li>"${type.type.name}"</li>`);
             pokemonTypeList.append(pokemonTypeItem);
         }
 
-        let pokemonAbilityList = document.createElement('ul');
-        pokemonAbilityList.classList.add('pokemon__abilities');
-        pokemonAbilityList.innerText = 'abilities: ';
+        let pokemonAbilityList = $(`<ul>abilities: </ul>`);
+        pokemonAbilityList.addClass('pokemon__abilities');
 
-        let pokemonAbilityItem = document.createElement('li');
+
         for (ability of abilities) {
-            pokemonAbilityItem.innerText = `"${ability.ability.name}"`;
+            let pokemonAbilityItem = $(`<li>"${ability.ability.name}"</li>`);
             pokemonAbilityList.append(pokemonAbilityItem);
         }
 
         //Append elements
-        closeButtonBox.append(closeButton);
-        pokemonDetails.append(pokemonHeight, pokemonTypeList, pokemonAbilityList);
-        modal.append(closeButtonBox, pokemonName, pokemonImg, pokemonDetails);
-        modalContainer.append(modal);
-
-        modalContainer.classList.add('is-visible');
-        modal.classList.add('is-visible');
+        pokemonImgBox.append(pokemonImg);
+        pokemonDetails.append(pokemonImgBox, pokemonHeight, pokemonTypeList, pokemonAbilityList);
     };
-
-
-    //Hide modal
-    function hideModal() {
-        modalContainer.classList.remove('is-visible');
-        modal.classList.remove('is-visible');
-    };
-
-    //Close modal when Esc key is pressed
-    window.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            hideModal();
-        }
-    });
-
-    //Close modal when modalContainer (outside modal) is clicked
-    window.addEventListener('click', function (e) {
-        if (e.target === modalContainer) {
-            hideModal();
-        }
-    });
 
 
     return { getAll, add, addListItem, loadList, loadDetails };
