@@ -82,7 +82,8 @@ a {
 }
 
 .form-inline {
-    transform: scale(1.25);
+    justify-content: flex-end;
+    transform: scale(1.25) translateX(-1rem);
 }
 
 .app__title {
@@ -159,11 +160,10 @@ a {
 
 /* Modal */
 .modal-dialog {
-    background-color: var(--color-green-lightest);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2.5rem;
+    padding: 0;
     box-shadow: var(--box-shadow-big);
     border: none;
     border-radius: none;
@@ -237,10 +237,6 @@ button.close {
         width: 10rem;
     }
 
-    .form-inline {
-        transform: translateX(25%) scale(.9);
-    }
-
     .app__title {
         font-size: 3.5rem; 
     }
@@ -272,8 +268,13 @@ button.close {
         padding: 0 1.5rem;
     }
 
-    .header__logo {
-        width: 5rem;
+    .navbar-brand {
+        margin-bottom: 1rem;
+    }
+
+    .form-inline {
+        justify-content: center;
+        transform: scale(1) translateX(0);
     }
 
     .app__title {
