@@ -117,6 +117,7 @@ let pokemonRepository = (function () {
     function showModal(pokemon) {
         let { name, imageUrl, height, types, abilities } = pokemon;
 
+        //Clear existing content in modal
         let pokemonName = $('.modal-title');
         pokemonName.empty();
         pokemonName.addClass('pokemon__name');
@@ -125,6 +126,7 @@ let pokemonRepository = (function () {
         pokemonDetails.empty();
         pokemonDetails.addClass('pokemon__details');
 
+        //Create elements / add contents to the exisiting elements
         pokemonName.append(document.createTextNode(`${name}`));
 
         let pokemonImg = $(`<img src="${imageUrl}" alt="${name} image">`);
@@ -157,6 +159,7 @@ let pokemonRepository = (function () {
         pokemonImgBox.append(pokemonImg);
         pokemonDetails.append(pokemonImgBox, pokemonHeight, pokemonTypeList, pokemonAbilityList);
     };
+
 
 
     return { getAll, add, addListItem, loadList, loadDetails };
