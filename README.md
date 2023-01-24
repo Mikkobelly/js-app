@@ -28,7 +28,7 @@ Key features:
 * [Fetch](https://github.com/github/fetch)
 
 ### Library / Frameworks 
-* [jQuery] (https://jquery.com/)
+* [jQuery](https://jquery.com/)
 * [Bootstrap](https://getbootstrap.com/)
 
 ### Extensions
