@@ -32,4 +32,4 @@ Key features:
 * [Bootstrap](https://getbootstrap.com/)
 
 ### Extensions
-*[ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+* [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
