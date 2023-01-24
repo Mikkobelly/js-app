@@ -31,7 +31,7 @@ let pokemonRepository = (function () {
         //Append
         pokemonList.append(listItem);
 
-        //Add a event listener to created button
+        //Add a event listener to created li
         listItem.on('click', (e) => {
             showDetails(pokemon);
         })
@@ -44,11 +44,11 @@ let pokemonRepository = (function () {
         showLoadingMessage();
 
         return fetch(apiUrl)
-            .then(function (response) {
+            .then((response) => {
                 return response.json();
             })
-            .then(function (json) {
-                json.results.forEach(function (item) {
+            .then((json) => {
+                json.results.forEach((item) => {
                     let pokemon = {
                         name: item.name,
                         detailsUrl: item.url
@@ -57,10 +57,10 @@ let pokemonRepository = (function () {
                     add(pokemon);
                 })
             })
-            .then(function () {
+            .then(() => {
                 hideLoadingMessage();
             })
-            .catch(function (e) {
+            .catch((e) => {
                 console.error(e);
                 hideLoadingMessage();
             });
@@ -72,19 +72,19 @@ let pokemonRepository = (function () {
 
         let url = item.detailsUrl;
         return fetch(url)
-            .then(function (response) {
+            .then((response) => {
                 return response.json();
             })
-            .then(function (details) {
+            .then((details) => {
                 item.imageUrl = details.sprites.front_default;
                 item.height = details.height;
                 item.types = details.types;
                 item.abilities = details.abilities;
             })
-            .then(function () {
+            .then(() => {
                 hideLoadingMessage();
             })
-            .catch(function (e) {
+            .catch((e) => {
                 console.error(e);
                 hideLoadingMessage();
             });
@@ -94,7 +94,7 @@ let pokemonRepository = (function () {
 
     //Show details of a pokemon
     function showDetails(pokemon) {
-        loadDetails(pokemon).then(function () {
+        loadDetails(pokemon).then(() => {
             showModal(pokemon);
         });
     };
@@ -161,14 +161,14 @@ let pokemonRepository = (function () {
     };
 
 
-    //Serach and display matching pokemon
+    //Search and display matching pokemon
     function showMatchedPokemon() {
         let inputValue = $('input').val().toLowerCase();
         $('.pokemon-list').empty();
-        pokemonList.forEach((item, i) => {
+        pokemonList.forEach((item) => {
             loadDetails(item);
-            if (pokemonList[i].name.includes(inputValue)) {
-                addListItem(pokemonList[i]);
+            if (item.name.includes(inputValue)) {
+                addListItem(item);
             }
         })
     };
