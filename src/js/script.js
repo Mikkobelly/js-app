@@ -173,22 +173,28 @@ let pokemonRepository = (function () {
         })
     };
 
+    //Display only matched pokemons when search button is clicked
     $('.search__button').on('click', (e) => {
         e.preventDefault();
         showMatchedPokemon();
     });
+
+    //Display all pokemons when input is cleared
+    $('input').on('input', (e) => {
+        e.target.value === '' && getAll().forEach(item => addListItem(item));
+    })
 
     return { getAll, add, addListItem, loadList, loadDetails };
 })();
 
 
 pokemonRepository.loadList()
-    .then(function () {
-        pokemonRepository.getAll().forEach(function (item) {
+    .then(() => {
+        pokemonRepository.getAll().forEach((item) => {
             pokemonRepository.addListItem(item);
         })
     })
-    .catch(function (e) {
+    .catch((e) => {
         console.error(e);
     })
 
